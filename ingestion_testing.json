@@ -1,0 +1,39 @@
+{
+	"name": "ingestion_testing",
+	"properties": {
+		"activities": [
+			{
+				"name": "LandingToRaw_bvActivityLog",
+				"type": "DatabricksNotebook",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"notebookPath": "/Full_Process/Data_Ingestion_JSON_template",
+					"baseParameters": {
+						"p_source_path_name": "dbfs:/mnt/landing/MES/",
+						"p_target_path_name": "dbfs:/mnt/raw/MES/",
+						"p_object_source_name": "bvActivityLog",
+						"p_object_target_name": "bvActivityLog"
+					}
+				},
+				"linkedServiceName": {
+					"referenceName": "AzureDatabricks_LinkedService",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"folder": {
+			"name": "MES/Testing"
+		},
+		"annotations": [],
+		"lastPublishTime": "2022-12-08T19:24:22Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}
